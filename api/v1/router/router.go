@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"time"
 
+	"template-go-rest/api/v1/handlers"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
@@ -33,7 +35,7 @@ func Initialize() *chi.Mux {
 	router.Use(middleware.Timeout(15 * time.Second))
 
 	router.Route("/v1", func(r chi.Router) {
-		// r.Mount("/", handlers.Routes()) // Implements the routes from the handlers
+		r.Mount("/", handlers.Routes()) // Implements the routes from the handlers
 	})
 
 	return router
