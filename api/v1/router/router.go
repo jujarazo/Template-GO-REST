@@ -1,6 +1,8 @@
 package router
 
 import (
+	"log"
+	"net/http"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -35,4 +37,13 @@ func Initialize() *chi.Mux {
 	})
 
 	return router
+}
+
+func ServeRouter() {
+	r := Initialize()
+
+	err := http.ListenAndServe(":8080", r)
+	if err != nil {
+		log.Fatal("Error serving the router!")
+	}
 }
